@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
 export default props => {
   return (
-    <AppBar>
+    <AppBar position="static">
       <Toolbar>
         <Typography variant="headline" color="inherit">
           Exercise Database
