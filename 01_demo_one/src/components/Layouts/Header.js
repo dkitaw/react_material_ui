@@ -1,9 +1,12 @@
 import React from 'react';
+import { AppBar, Toolbar } from '@material-ui/core'
 
 export default props => {
   return (
-    <div>
-      <h1>Header</h1>
-    </div>
+    <AppBar >
+        <Toolbar>
+          
+        </Toolbar>
+      </AppBar>
   );
 };
