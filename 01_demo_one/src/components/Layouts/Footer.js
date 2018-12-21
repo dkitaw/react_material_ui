@@ -1,7 +1,6 @@
 import React from 'react';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 export default ({ muscles, category, onSelect }) => {
-  console.log(category);
   const index = category
     ? muscles.findIndex(group => group === category) + 1
     : 0;
@@ -19,7 +18,7 @@ export default ({ muscles, category, onSelect }) => {
       >
         <Tab label="All" />
         {muscles.map(muscle => (
-          <Tab label={muscle} />
+          <Tab key={muscle} label={muscle} />
         ))}
       </Tabs>
     </Paper>

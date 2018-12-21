@@ -5,8 +5,7 @@ import {
   Typography,
   List,
   ListItem,
-  ListItemText,
-  ListItemLink
+  ListItemText
 } from '@material-ui/core';
 
 const styles = {
@@ -18,42 +17,39 @@ const styles = {
     overflowY: 'auto'
   }
 };
-export default ({ exercises, category }) => {
-  return (
-    <Grid container>
-      <Grid item sm>
-        <Paper style={styles.Paper}>
-          {exercises.map(([group, exercises]) => (
-            !category || category === group
-            ?<Fragment>
-            <Typography
-              variant="headline"
-              style={{ textTransform: 'capitalize' }}
-            >
-              {group}
-            </Typography>
-            <List component="ul">
-              {exercises.map(({ title }) => {
-                return (
-                  <ListItem button>
-                    <ListItemText primary={title} />
-                  </ListItem>
-                );
-              })}
-            </List>
-              </Fragment>
-              :null
-          ))}
-        </Paper>
-      </Grid>
-      <Grid item sm>
-        <Paper style={styles.Paper}>
-          <Typography variant="display1">Welcome!</Typography>
-          <Typography variant="Subheading" style={{ marginTop: 20 }}>
-            Pleas select an exercise from the list on the left
+export default ({
+  exercises,
+  category,
+  onSelect,
+  exercise: {
+    id,
+    title='Welcome!',
+    description='Pleas select an exercise from the list on the left'
+  } }) => <Grid container>
+  <Grid item sm>
+    <Paper style={styles.Paper}>
+      {exercises.map(([group, exercises]) => (!category || category === group
+        ? <Fragment key={group}>
+          <Typography variant="headline" style={{ textTransform: 'capitalize' }}>
+            {group}
           </Typography>
-        </Paper>
-      </Grid>
-    </Grid>
-  );
-};
+          <List component="ul">
+            {exercises.map(({ title, id }) => {
+              return (<ListItem key={id} button onClick={() => onSelect(id)}>
+                <ListItemText primary={title} />
+              </ListItem>);
+            })}
+          </List>
+        </Fragment>
+        : null))}
+    </Paper>
+  </Grid>
+  <Grid item sm>
+    <Paper style={styles.Paper}>
+      <Typography variant="display1">{title}</Typography>
+      <Typography variant="subheading" style={{ marginTop: 20 }}>
+        {description}
+      </Typography>
+    </Paper>
+  </Grid>
+</Grid>;
