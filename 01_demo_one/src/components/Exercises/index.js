@@ -28,6 +28,7 @@ export default ({
   } }) => <Grid container>
   <Grid item sm>
     <Paper style={styles.Paper}>
+      // (([group, exercises]) destructure group and exercise. exercises is new array by getExercises() func
       {exercises.map(([group, exercises]) => (!category || category === group
         ? <Fragment key={group}>
           <Typography variant="headline" style={{ textTransform: 'capitalize' }}>
