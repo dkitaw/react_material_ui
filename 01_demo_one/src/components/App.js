@@ -34,6 +34,8 @@ class App extends Component {
       <Fragment>
         <Header />
         <Exercises
+        category={category}
+          
         exercises={this.getExercisesByMuscles()}
         />
         <Footer

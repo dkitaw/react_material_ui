@@ -18,29 +18,31 @@ const styles = {
     overflowY: 'auto'
   }
 };
-export default ({ exercises }) => {
+export default ({ exercises, category }) => {
   return (
     <Grid container>
       <Grid item sm>
         <Paper style={styles.Paper}>
           {exercises.map(([group, exercises]) => (
-            <Fragment>
-              <Typography
-                variant="headline"
-                style={{ textTransform: 'capitalize' }}
-              >
-                {group}
-              </Typography>
-              <List component="ul">
-                {exercises.map(({ title }) => {
-                  return (
-                    <ListItem button>
-                      <ListItemText primary={title} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            </Fragment>
+            !category || category === group
+            ?<Fragment>
+            <Typography
+              variant="headline"
+              style={{ textTransform: 'capitalize' }}
+            >
+              {group}
+            </Typography>
+            <List component="ul">
+              {exercises.map(({ title }) => {
+                return (
+                  <ListItem button>
+                    <ListItemText primary={title} />
+                  </ListItem>
+                );
+              })}
+            </List>
+              </Fragment>
+              :null
           ))}
         </Paper>
       </Grid>
